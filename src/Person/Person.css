@@ -1,0 +1,14 @@
+.Person {
+    width: 60%;
+    margin: auto;
+    border: 2px solid green;
+    padding: 20px;
+    margin: 20px;
+    color: red;
+}
+button {
+    background-color: green;
+    color: wheat;
+    padding: 12px 10px;
+    
+}
