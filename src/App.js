@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import './Person/Person.css';
-import Radium, { StyleRoot } from 'radium';
+//import './Person/Person.css';
+import Radium from 'radium';
+import styled from 'styled-components';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -64,17 +65,28 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      cursor: 'pointer',
-      padding: '10px',
-      borderRadius: 'border-box',
-      ':hover': {
-        backgroundColor: 'blue',
-        color: 'white'
-      }
-    };
+    const Btn = styled.button`
+      background-color: ${props => props.alt ? 'green' : 'red'};
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  borderRadius: border-box;
+      &: hover {
+          background-color: ${props => props.alt ? 'blue' : 'purple'};
+          color: white;
+} `;
+
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   cursor: 'pointer',
+    //   padding: '10px',
+    //   borderRadius: 'border-box',
+    //   ':hover': {
+    //     backgroundColor: 'blue',
+    //     color: 'white'
+    //   }
+    // };
 
     let classes = [];
 
@@ -103,23 +115,20 @@ class App extends Component {
         </div>
       );
 
-      style.backgroundColor = 'red'
-      style.color = 'black'
-      style[':hover'] = {
-        backgroundColor: 'lightgrey',
-        color: 'white'
-      }
+      // style.backgroundColor = 'red'
+      // style.color = 'black'
+      // style[':hover'] = {
+      //   backgroundColor: 'lightgrey',
+      //   color: 'white'
+      // }
     }
 
     return (
-      <StyleRoot>
-        <div className="App">
-          <h3 className={classes.join(' ')} >Hello World am a react beginner</h3>
-          <button style={style} onClick={this.togglePerson}>Switch Name</button>
-          {persons}
-
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h3 className={classes.join(' ')} >Hello World am a react beginner</h3>
+        <Btn alt={this.state.showPerson} onClick={this.togglePerson}>Switch Name</Btn>
+        {persons}
+      </div>
     );
   }
 }

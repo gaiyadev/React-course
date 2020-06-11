@@ -1,4 +1,4 @@
-.Person {
+/* .Person {
     width: 60%;
     margin:  12px auto;
     border: 2px solid green;
@@ -12,7 +12,7 @@ button {
     
 }
 
-/* @media(min-width: 500px) {
+@media(min-width: 500px) {
     .Person {
         width: 450px;
     }
