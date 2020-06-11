@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Person/Person.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
         ],
     })
   }
+
   changeNameHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
@@ -67,7 +69,11 @@ class App extends Component {
       color: 'white',
       cursor: 'pointer',
       padding: '10px',
-      borderRadius: 'border-box'
+      borderRadius: 'border-box',
+      ':hover': {
+        backgroundColor: 'blue',
+        color: 'white'
+      }
     };
 
     let classes = [];
@@ -99,18 +105,23 @@ class App extends Component {
 
       style.backgroundColor = 'red'
       style.color = 'black'
+      style[':hover'] = {
+        backgroundColor: 'lightgrey',
+        color: 'white'
+      }
     }
 
     return (
+      <StyleRoot>
+        <div className="App">
+          <h3 className={classes.join(' ')} >Hello World am a react beginner</h3>
+          <button style={style} onClick={this.togglePerson}>Switch Name</button>
+          {persons}
 
-      <div className="App">
-        <h3 className={classes.join(' ')} >Hello World am a react beginner</h3>
-        <button style={style} onClick={this.togglePerson}>Switch Name</button>
-        {persons}
-
-      </div>
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default App;
+export default Radium(App);

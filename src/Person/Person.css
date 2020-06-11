@@ -1,9 +1,8 @@
 .Person {
     width: 60%;
-    margin: auto;
+    margin:  12px auto;
     border: 2px solid green;
     padding: 20px;
-    margin: 20px;
     color: red;
 }
 button {
@@ -12,3 +11,9 @@ button {
     padding: 12px 10px;
     
 }
+
+/* @media(min-width: 500px) {
+    .Person {
+        width: 450px;
+    }
+} */
