@@ -62,6 +62,23 @@ class App extends Component {
   }
 
   render() {
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      cursor: 'pointer',
+      padding: '10px',
+      borderRadius: 'border-box'
+    };
+
+    let classes = [];
+
+    if (this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
     let persons = null;
     if (this.state.showPerson) {
       persons = (
@@ -78,13 +95,17 @@ class App extends Component {
           <Person
             change={this.changeNameHandler} name={this.state.persons[2].name} age={this.state.persons[2].age} /> */}
         </div>
-      )
+      );
+
+      style.backgroundColor = 'red'
+      style.color = 'black'
     }
 
     return (
+
       <div className="App">
-        <h3>Hello World am a react beginner</h3>
-        <button onClick={this.togglePerson}>Switch Name</button>
+        <h3 className={classes.join(' ')} >Hello World am a react beginner</h3>
+        <button style={style} onClick={this.togglePerson}>Switch Name</button>
         {persons}
 
       </div>
