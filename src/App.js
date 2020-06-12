@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-//import './Person/Person.css';
-import Radium from 'radium';
+//import Person from './components/Person/Person.css';
+//import Radium from 'radium';
 import styled from 'styled-components';
-import Person from './Person/Person';
+import Person from './components/Person/Person'
 import ErrorBoundary from './ErrorBoundary/Error';
 
 class App extends Component {
@@ -103,9 +103,9 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <ErrorBoundary> <Person name={person.name} age={person.age}
+            return <ErrorBoundary key={person.id}> <Person name={person.name} age={person.age}
               change={(event) => this.changeNameHandler(event, person.id)} click={this.deletePersonHandler.bind(this, index)}
-              key={person.id} />
+            />
             </ErrorBoundary>
           })}
           {/* 
@@ -134,4 +134,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
