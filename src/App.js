@@ -3,10 +3,17 @@ import './App.css';
 //import Person from './components/Person/Person.css';
 //import Radium from 'radium';
 import styled from 'styled-components';
-import Person from './components/Person/Person'
+//import Person from './components/Person/Person';
 import ErrorBoundary from './ErrorBoundary/Error';
 
+import Persons from './components/Persons/Persons';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log('[app.js] constructor');
+
+  }
   state = {
     persons:
       [
@@ -15,6 +22,16 @@ class App extends Component {
         { name: "Obed", id: "scscscss", age: 326 }
       ],
     showPerson: false
+
+  }
+  static getDerivedStateFromProps(props, state) {
+    console.log('[app.js] getDerivedStateFromProps', props);
+    return state;
+
+  }
+
+  componentDidMount() {
+    console.log('[app.js] componentDidMount');
 
   }
 
@@ -66,6 +83,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[app.js] rendering');
     const Btn = styled.button`
       background-color: ${props => props.alt ? 'green' : 'red'};
   color: white;
@@ -102,12 +120,23 @@ class App extends Component {
     if (this.state.showPerson) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}> <Person name={person.name} age={person.age}
-              change={(event) => this.changeNameHandler(event, person.id)} click={this.deletePersonHandler.bind(this, index)}
-            />
-            </ErrorBoundary>
-          })}
+          <ErrorBoundary>
+            <Persons
+              persons={this.state.persons}
+              changed={this.deletePersonHandler}
+              clicked={this.changeNameHandler}
+              title={this.props.appTitle} />
+          </ErrorBoundary>
+
+          {/* {{
+            this.state.persons.map((person, index) => {
+              return <ErrorBoundary key={person.id}> <Person name={person.name} age={person.age}
+                change={(event) => this.changeNameHandler(event, person.id)} click={this.deletePersonHandler.bind(this, index)}
+              />
+              </ErrorBoundary>
+            })
+          }} */}
+
           {/* 
           <Person
             click={this.switchNameHandler.bind(this, "Peace")} name={this.state.persons[0].name} age={this.state.persons[0].age} />
@@ -126,7 +155,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h3 className={classes.join(' ')} >Hello World am a react beginner</h3>
+        <h3 className={classes.join(' ')} >{this.props.appTitle}</h3>
         <Btn alt={this.state.showPerson} onClick={this.togglePerson}>Switch Name</Btn>
         {persons}
       </div>
