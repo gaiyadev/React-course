@@ -4,6 +4,7 @@ import './App.css';
 import Radium from 'radium';
 import styled from 'styled-components';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/Error';
 
 class App extends Component {
   state = {
@@ -102,9 +103,10 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person name={person.name} age={person.age}
+            return <ErrorBoundary> <Person name={person.name} age={person.age}
               change={(event) => this.changeNameHandler(event, person.id)} click={this.deletePersonHandler.bind(this, index)}
               key={person.id} />
+            </ErrorBoundary>
           })}
           {/* 
           <Person
@@ -119,8 +121,7 @@ class App extends Component {
       // style.color = 'black'
       // style[':hover'] = {
       //   backgroundColor: 'lightgrey',
-      //   color: 'white'
-      // }
+      //   color: 'white'      // }
     }
 
     return (
