@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const person = (props) => {
+class Person extends Component {
+    // static getDerivedStateFromProps(props, state) {
+    //     console.log('[Persons.js] getDerivedStateFromProps');
+    //     return state;
+    // }
     // const style = {
     //     ' @media(min - width: 500px)': {
     //         width: '450px'
     //     }
     // }
-    const StyledDiv = styled.div`
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log('[Persons.js] shouldComponentUpdate');
+
+        return true;
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('[Persons.js] getSnapshotBeforeUpdate');
+
+    }
+
+    componentDidUpdate() {
+        console.log('[Persons.js] componentDidUpdate');
+
+    }
+    render() {
+        const StyledDiv = styled.div`
     width: 60%;
     margin:  12px auto;
     border: 2px solid green;
@@ -27,19 +47,19 @@ button:hover {
             width: 450px;
         }
 }`;
+        return (
+            <StyledDiv   >
+                <h3 onClick={this.props.click}>this is person  i am {this.props.name} {this.props.age} </h3>
+                <p >{this.props.children}</p>
 
-    return (
-        <StyledDiv   >
-            <h3 onClick={props.click}>this is person  i am {props.name} {props.age} </h3>
-            <p >{props.children}</p>
+                <input type="text" onChange={this.props.change} value={this.props.name} />
+            </StyledDiv>
 
-            <input type="text" onChange={props.change} value={props.name} />
-        </StyledDiv>
-
-        // <div className="Person"  >
-        // </div>
-    );
+            // <div className="Person"  >
+            // </div>
+        );
+    }
 
 }
 
-export default person;
+export default Person;

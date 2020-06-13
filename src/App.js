@@ -120,7 +120,7 @@ class App extends Component {
     if (this.state.showPerson) {
       persons = (
         <div>
-          <ErrorBoundary>
+          <ErrorBoundary >
             <Persons
               persons={this.state.persons}
               changed={this.deletePersonHandler}
