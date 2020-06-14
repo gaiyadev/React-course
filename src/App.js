@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ErrorBoundary from './ErrorBoundary/Error';
 
 import Persons from './components/Persons/Persons';
+//import Aux from './hoc/Auxilary'
 
 class App extends Component {
   constructor(props) {
